@@ -1,5 +1,46 @@
-.venv/
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# uv
+# NOTE: uv.lock is intentionally NOT ignored - it must be committed.
+
+# Local scratch area (throwaway scripts, never part of the deliverable)
+scratch/
+
+# Jupyter
 .ipynb_checkpoints/
+
+# Project data policy: keep directory placeholders, ignore real content
+data/raw/*
+!data/raw/.gitkeep
+data/exchange/*
+!data/exchange/.gitkeep
+!data/exchange/README.md
+
+# Generated outputs
+outputs/*
+!outputs/.gitkeep
+
+# Editors / OS
+.vscode/
+.idea/
 .DS_Store
+
+# Environment files
+.env
+
+# Tooling caches
+.atl/

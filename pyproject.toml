@@ -1,0 +1,24 @@
+[project]
+name = "g7-policy-sim"
+version = "0.1.0"
+description = "CC2017 Modelacion y Simulacion - Grupo 7: Politica Publica y Asignacion de Recursos (Ciudad UVG earthquake response simulation)"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "matplotlib>=3.8",
+    "openpyxl>=3.1",
+    "scipy>=1.12",
+]
+
+[dependency-groups]
+dev = [
+    "jupyter>=1.0",
+    "ipykernel>=6.29",
+    "notebook>=7.0",
+    "nbconvert>=7.16",
+]
+
+[tool.uv]
+package = false
