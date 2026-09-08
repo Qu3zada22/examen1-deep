@@ -1,6 +1,6 @@
 # Guion del video de presentacion - Grupo 7
 
-**Politica Publica y Asignacion de Recursos - Ciudad UVG**
+Politica Publica y Asignacion de Recursos - Ciudad UVG
 
 Duracion total: 3 a 5 minutos. Debe mostrar el modelo en funcionamiento
 (pantalla del notebook o de las graficas generadas) y al menos un
@@ -19,7 +19,7 @@ Explicar cual fue la decision de diseno mas dificil que tomo el grupo
 se tomo asi. No describir el modelo completo, concentrarse solo en esa
 decision.
 
-**Bullets de apoyo para preparar la respuesta:**
+Bullets de apoyo para preparar la respuesta:
 - Candidata sugerida: como agregar el backlog de 8 recursos con unidades
   incompatibles (quetzales en millones vs. unidades fisicas) sin que el
   presupuesto domine artificialmente el indice de urgencia -> decision de
@@ -42,7 +42,7 @@ confianza del 95%, o el grafico de trayectorias de cobertura por zona) y
 explicarlo verbalmente. Debe mencionarse el intervalo de confianza y que
 implica para la incertidumbre de la conclusion.
 
-**Bullets de apoyo:**
+Bullets de apoyo:
 - Que metrica(s) cumplen el umbral y cuales no.
 - Cual es el ancho del intervalo de confianza del 95% y que tan seguros
   estan de la conclusion presentada.
@@ -56,7 +56,7 @@ Explicar que informacion se recibio de otro grupo (Grupo 2, 3 o 5, o los
 tres), como se incorporo al modelo, y si eso cambio o confirmo las
 conclusiones previas al intercambio.
 
-**Bullets de apoyo:**
+Bullets de apoyo:
 - Que reporte(s) llegaron realmente y en que formato.
 - Que decision de asignacion cambio mas despues de incorporar esa
   informacion.
@@ -78,7 +78,7 @@ examen):
 > dimension se incorporara formalmente, que decision de asignacion
 > cambiaria y a favor de que zona?"
 
-**Bullets de apoyo para preparar la respuesta:**
+Bullets de apoyo para preparar la respuesta:
 - Elegir una dimension concreta no capturada por M1-M4 (ej. bienestar
   psicologico/trauma, cohesion social y desplazamiento familiar, dignidad
   en el refugio temporal, equidad intergeneracional).

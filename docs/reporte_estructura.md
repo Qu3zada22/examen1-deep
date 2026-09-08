@@ -1,6 +1,6 @@
 # Estructura del reporte tecnico - Grupo 7
 
-**Politica Publica y Asignacion de Recursos - Ciudad UVG**
+Politica Publica y Asignacion de Recursos - Ciudad UVG
 
 Extension maxima: 8 paginas. La estructura y los presupuestos de pagina
 siguientes son los exigidos por el enunciado del examen; no deben
@@ -10,14 +10,14 @@ reordenarse ni omitirse secciones.
 
 ## 1. Justificacion del paradigma (1 pagina)
 
-- Declarar explicitamente el paradigma elegido: **Dinamica de Sistemas
+- Declarar explicitamente el paradigma elegido: Dinamica de Sistemas
   (stock-and-flow agregado) combinada con una capa de decision/control
-  programada** (la politica de asignacion se reevalua cada bloque de 6
+  programada (la politica de asignacion se reevalua cada bloque de 6
   horas).
-- Justificar por que **no** es un Modelo Basado en Agentes: el objeto de
+- Justificar por que no es un Modelo Basado en Agentes: el objeto de
   estudio es el conjunto agregado de recursos, necesidad insatisfecha y
-  backlog **por zona**, no un tomador de decisiones individual.
-- Justificar por que **no** es Simulacion de Eventos Discretos: no existe
+  backlog por zona, no un tomador de decisiones individual.
+- Justificar por que no es Simulacion de Eventos Discretos: no existe
   una disciplina de colas de entidades discretas; la asignacion es una
   decision programada (scheduled), no disparada por eventos.
 - Citar explicitamente los criterios de seleccion de paradigma vistos en
@@ -28,7 +28,7 @@ reordenarse ni omitirse secciones.
   entre ellos (en este caso: la frontera entre el nucleo SD y la capa de
   control programada).
 
-**Prompts de apoyo:**
+Prompts de apoyo:
 - Que criterio de la diapositiva X descarta ABM para este componente?
 - Que criterio descarta DES?
 - Donde exactamente esta la frontera entre el stock-and-flow y la capa de
@@ -38,35 +38,35 @@ reordenarse ni omitirse secciones.
 
 ## 2. Descripcion del modelo en formato ODD simplificado (2 paginas)
 
-- **Entidades y atributos:** las 5 zonas (Z1..Z5), cada una con su indice
+- Entidades y atributos: las 5 zonas (Z1..Z5), cada una con su indice
   de dano (0-10), poblacion en riesgo, prioridad declarada
   (CRITICA/ALTA/MODERADA/BAJA) y justificacion; los 8 recursos del archivo
   (presupuesto municipal, presupuesto nacional, vehiculos pesados,
   vehiculos de distribucion, generadores, combustible, kits de agua,
   tiendas de campana), cada uno con su stock inicial (T0), costo unitario y
   fuente de financiamiento.
-- **Reglas de comportamiento / ecuaciones de estado:** la actualizacion del
+- Reglas de comportamiento y ecuaciones de estado: la actualizacion del
   stock de backlog (S(t+1) = S(t) + inflow*dt - outflow*dt), la
   depreciacion del stock de recursos disponibles, y las 6 politicas de
   asignacion implementadas (equal_share, proportional_to_need,
   severity_weighted, worst_first, threshold_then_proportional,
   manual_plan).
-- **Modo de scheduling:** decision de asignacion re-evaluada una vez por
+- Modo de scheduling: decision de asignacion re-evaluada una vez por
   bloque de 6 horas (12 bloques en total); no hay eventos discretos ni
   colas.
-- **Mecanismo de comunicacion entre entidades:** no hay comunicacion
+- Mecanismo de comunicacion entre entidades: no hay comunicacion
   directa entre zonas; la unica interaccion es a traves del stock de
   recursos compartido (competencia por un pool comun) y, despues del
   intercambio, a traves de los ajustes de necesidad que introducen los
   reportes de los Grupos 2, 3 y 5.
-- **Distribucion inicial de atributos:** valores iniciales tomados
+- Distribucion inicial de atributos: valores iniciales tomados
   directamente de docs/Grupo7_PoliticaPublica.xlsx (indice de dano,
   poblacion en riesgo, stock T0 por recurso); las tasas de necesidad
   per-capita, la tasa de perdida de acceso y los parametros de
   incertidumbre son supuestos documentados (marcados ASSUMPTION en el
   notebook) porque el archivo no los especifica.
 
-**Recordatorios (campos ODD simplificado a cubrir explicitamente):**
+Recordatorios (campos ODD simplificado a cubrir explicitamente):
 - [ ] Entidades y atributos
 - [ ] Reglas de comportamiento / ecuaciones de estado
 - [ ] Modo de scheduling
@@ -88,15 +88,15 @@ reordenarse ni omitirse secciones.
   cuantitativa via el registro de auditoria (item b), y la evaluacion
   contra las 4 metricas con umbrales y pass/fail (item c).
 - Responder explicitamente las dos preguntas del grupo:
-  - **Pregunta 1:** la propuesta inicial de asignacion para las primeras
+  - Pregunta 1: la propuesta inicial de asignacion para las primeras
     24 horas (Seccion 13 del notebook) y cual metrica es la mas dificil de
     cumplir y por que.
-  - **Pregunta 2:** el efecto de incorporar los reportes de los Grupos 2, 3
+  - Pregunta 2: el efecto de incorporar los reportes de los Grupos 2, 3
     y 5 (Seccion 14), la decision que mas cambio, y el impacto cuantificado
     sobre al menos dos de las cuatro metricas.
 
-**Recordatorios de los pesos de evaluacion de las 4 metricas** (deben
-citarse explicitamente al interpretar los resultados):
+Recordatorios de los pesos de evaluacion de las 4 metricas (deben citarse
+explicitamente al interpretar los resultados):
 - M1 tasa de mortalidad evitable - peso 30% - umbral < 15%
 - M2 tiempo promedio de respuesta (zonas CRITICA) - peso 25% - umbral < 6h
 - M3 cobertura de suministros en 24h - peso 25% - umbral > 80%

@@ -1,126 +1,135 @@
-# Group 7 - Public Policy and Resource Allocation
+# Grupo 7 - Politica Publica y Asignacion de Recursos
 
-CC2017 Modelacion y Simulacion - Ciudad UVG earthquake scenario.
+CC2017 Modelacion y Simulacion - Escenario de terremoto en Ciudad UVG.
 
-Group 7 represents the technical unit of the Emergency Committee responsible
-for allocating public resources (budget, heavy vehicles, distribution
-vehicles, generators, fuel, water kits, tents) across the 5 urban zones of
-Ciudad UVG (Z1..Z5) over the 72-hour post-event horizon (12 blocks of 6
-hours each), and for evaluating that allocation against four policy metrics.
+El Grupo 7 representa la unidad tecnica del Comite de Emergencia responsable
+de asignar recursos publicos (presupuesto, vehiculos pesados, vehiculos de
+distribucion, generadores, combustible, kits de agua, tiendas de campana)
+entre las 5 zonas urbanas de Ciudad UVG (Z1..Z5) a lo largo del horizonte de
+72 horas posteriores al evento (12 bloques de 6 horas cada uno), y de evaluar
+esa asignacion contra cuatro metricas de politica publica.
 
-## Project layout
+## Estructura del proyecto
 
 ```
 .
-├── pyproject.toml           uv-managed dependency manifest (non-packaged project)
-├── uv.lock                  locked dependency versions (commit this)
+├── pyproject.toml           manifiesto de dependencias gestionado con uv (proyecto no empaquetado)
+├── uv.lock                  versiones de dependencias fijadas (se versiona)
 ├── notebooks/
-│   └── main.ipynb           THE deliverable: the entire model lives here
+│   └── main.ipynb           EL entregable: todo el modelo vive aqui
 ├── docs/
-│   ├── Grupo7_PoliticaPublica.xlsx   the group's data file (source of truth)
-│   ├── reporte_estructura.md         report skeleton (Spanish)
-│   ├── video_guion.md                video outline (Spanish)
-│   └── prompts_ia.md                 generative-AI prompt log (Spanish)
+│   ├── Grupo7_PoliticaPublica.xlsx   archivo de datos del grupo (fuente de verdad)
+│   ├── reporte_estructura.md         esqueleto del reporte (espanol)
+│   ├── video_guion.md                guion del video (espanol)
+│   └── prompts_ia.md                 registro de prompts de IA generativa (espanol)
 ├── data/
-│   ├── raw/                  drop any additional/updated Excel files here
-│   └── exchange/              CSV reports received from Groups 2, 3, 5
-└── outputs/                   exported figures and result tables
+│   ├── raw/                  colocar aqui cualquier archivo Excel adicional o actualizado
+│   └── exchange/              reportes CSV recibidos de los Grupos 2, 3 y 5
+└── outputs/                   figuras y tablas de resultados exportadas
 ```
 
-There is no `src/` package and no helper scripts: the assignment's
-deliverable is the notebook itself, so every function, dataclass, and cell
-lives directly in `notebooks/main.ipynb`, in the order the report/video
-narrative needs them.
+No existe un paquete `src/` ni scripts auxiliares: el entregable de la
+tarea es el notebook en si, por lo que cada funcion, dataclass y celda vive
+directamente en `notebooks/main.ipynb`, en el orden que exige la narrativa
+del reporte y del video.
 
-## Setup
+## Configuracion
 
-This project uses [`uv`](https://docs.astral.sh/uv/) for dependency
-management.
+Este proyecto usa [`uv`](https://docs.astral.sh/uv/) para la gestion de
+dependencias.
 
 ```bash
 uv sync
 uv run jupyter lab
 ```
 
-Then open `notebooks/main.ipynb` and run all cells top to bottom.
+Luego abrir `notebooks/main.ipynb` y ejecutar todas las celdas de arriba
+hacia abajo.
 
-To re-run and re-execute the notebook headlessly (e.g. to regenerate
-`outputs/` after a change), instead run:
+Para volver a ejecutar el notebook completo sin interfaz (por ejemplo, para
+regenerar `outputs/` tras un cambio), ejecutar en su lugar:
 
 ```bash
 uv run jupyter nbconvert --to notebook --execute --inplace notebooks/main.ipynb
 ```
 
-## Data status
+## Estado de los datos
 
-The Group 7 Excel file (`docs/Grupo7_PoliticaPublica.xlsx`) already arrived
-and its resource pools, zone damage table, and policy constraints are
-hardcoded into the notebook's `Params` and constraint-checking cells. The
-notebook also includes a parsing cell that re-reads the workbook directly
-and cross-checks the hardcoded constants against it, so the notebook still
-proves it reads the file correctly and still runs end to end if the file is
-ever moved or unavailable.
+El archivo Excel del Grupo 7 (`docs/Grupo7_PoliticaPublica.xlsx`) ya llego,
+y sus pools de recursos, tabla de dano por zona y restricciones de politica
+estan codificados directamente en las celdas `Params` y de verificacion de
+restricciones del notebook. El notebook tambien incluye una celda de
+parseo que vuelve a leer el archivo directamente y cruza las constantes
+codificadas contra el, de modo que el notebook sigue demostrando que lee el
+archivo correctamente y sigue funcionando de principio a fin si el archivo
+llega a moverse o no estar disponible.
 
-The three **exchange** reports (from Groups 2, 3, and 5) do not exist yet -
-they are only produced during the in-person exchange. Until then, the
-notebook's exchange section falls back to a small synthetic placeholder
-exchange so the "before/after" pipeline (Question 2) can run today.
+Los tres reportes de intercambio (de los Grupos 2, 3 y 5) todavia no
+existen, se produciran unicamente durante el intercambio presencial. Hasta
+entonces, la seccion de intercambio del notebook usa como respaldo un
+pequeno intercambio sintetico de referencia para que el flujo "antes/despues"
+(Pregunta 2) pueda ejecutarse desde ya.
 
-### When the exchange data arrives
+### Cuando lleguen los datos del intercambio
 
-1. Drop the three CSV files (matching the schemas in
-   `data/exchange/README.md`) into `data/exchange/`:
+1. Colocar los tres archivos CSV (siguiendo los esquemas de
+   `data/exchange/README.md`) en `data/exchange/`:
    `g2_hospital.csv`, `g3_supplies.csv`, `g5_personnel.csv`.
-2. `uv sync` (only needed if dependencies changed).
-3. `uv run jupyter lab` and re-run the notebook's exchange-loading cell -
-   it automatically prefers the real files over the synthetic placeholder
-   once they are present.
-4. Re-run the Question 2 (before/after) and sensitivity-analysis cells.
-5. Update the "Incorporacion del intercambio" section of
-   `docs/reporte_estructura.md` with the real before/after findings.
+2. `uv sync` (solo si cambiaron las dependencias).
+3. `uv run jupyter lab` y volver a ejecutar la celda de carga del
+   intercambio del notebook: prefiere automaticamente los archivos reales
+   sobre el placeholder sintetico en cuanto estan presentes.
+4. Volver a ejecutar las celdas de la Pregunta 2 (antes/despues) y de
+   analisis de sensibilidad.
+5. Actualizar la seccion "Incorporacion del intercambio" de
+   `docs/reporte_estructura.md` con los hallazgos reales de antes/despues.
 
-### If a newer/updated Excel file arrives instead
+### Si en cambio llega un archivo Excel nuevo o actualizado
 
-1. Drop it in `data/raw/`.
+1. Colocarlo en `data/raw/`.
 2. `uv sync`.
-3. `uv run jupyter lab` and run the Excel-parsing cell against the new path.
-4. Update the hardcoded `Params` defaults and the constraint constants in
-   the notebook from the newly printed schema.
-5. Re-run all cells.
+3. `uv run jupyter lab` y ejecutar la celda de parseo del Excel contra la
+   nueva ruta.
+4. Actualizar los valores por defecto de `Params` y las constantes de
+   restricciones en el notebook segun el esquema recien impreso.
+5. Volver a ejecutar todas las celdas.
 
-## Before the exchange / after the exchange workflow
+## Flujo de trabajo antes del intercambio / despues del intercambio
 
-- **Before the exchange:** the notebook builds `Params` purely from the
-  Group 7 Excel file (resource pools, zone damage/vulnerability, declared
-  priorities) and produces an initial 24-hour allocation proposal (Question
-  1), evaluated against the four metrics with no external inputs.
-- **At the exchange:** Group 7 should hand the CSV templates described in
-  `data/exchange/README.md` to Groups 2, 3, and 5 so their reports come back
-  in the exact shape the notebook expects.
-- **After the exchange:** the notebook reloads with the `Exchange` bundle
-  (hospital saturation from Group 2, supply bottlenecks from Group 3,
-  personnel/reinforcement needs from Group 5), re-runs the Monte Carlo
-  simulation, and produces the before/after comparison table with deltas and
-  95% confidence intervals (Question 2), plus a sensitivity analysis on the
-  national budget and on Z1 accessibility.
+- Antes del intercambio: el notebook construye `Params` unicamente a partir
+  del archivo Excel del Grupo 7 (pools de recursos, dano/vulnerabilidad por
+  zona, prioridades declaradas) y produce una propuesta inicial de
+  asignacion para 24 horas (Pregunta 1), evaluada contra las cuatro
+  metricas sin entradas externas.
+- Durante el intercambio: el Grupo 7 debe entregar las plantillas CSV
+  descritas en `data/exchange/README.md` a los Grupos 2, 3 y 5 para que sus
+  reportes vuelvan exactamente en la forma que el notebook espera.
+- Despues del intercambio: el notebook se recarga con el paquete
+  `Exchange` (saturacion hospitalaria del Grupo 2, cuellos de botella de
+  suministros del Grupo 3, necesidades de personal/refuerzo del Grupo 5),
+  vuelve a ejecutar la simulacion de Monte Carlo y produce la tabla
+  comparativa antes/despues con deltas e intervalos de confianza del 95%
+  (Pregunta 2), ademas de un analisis de sensibilidad sobre el presupuesto
+  nacional y sobre la accesibilidad de Z1.
 
-## Required final output (exam deliverable)
+## Salida final requerida (entregable del examen)
 
-Per section 6 of `docs/Grupo7_PoliticaPublica.xlsx`, Group 7 delivers
-directly to the professor (not to another group). The notebook's final
-section produces all four parts and exports them to `outputs/`:
+Segun la seccion 6 de `docs/Grupo7_PoliticaPublica.xlsx`, el Grupo 7 entrega
+directamente al profesor (no a otro grupo). La seccion final del notebook
+produce las cuatro partes y las exporta a `outputs/`:
 
-- **(a)** a 72-hour resource allocation plan per zone (`a_allocation_plan_72h.csv`)
-- **(b)** a quantitative audit trail justifying every allocation decision (`b_audit_trail.csv`)
-- **(c)** an evaluation of the plan against the four metrics, with pass/fail and 95% CI (`c_evaluation_vs_thresholds.csv`)
-- **(d)** a sensitivity analysis on a halved national budget and on Z1 being inaccessible for the first 12 hours (`d_sensitivity_*.csv`)
+- (a) un plan de asignacion de recursos por zona a 72 horas (`a_allocation_plan_72h.csv`)
+- (b) un registro de auditoria cuantitativo que justifica cada decision de asignacion (`b_audit_trail.csv`)
+- (c) una evaluacion del plan contra las cuatro metricas, con pass/fail e IC del 95% (`c_evaluation_vs_thresholds.csv`)
+- (d) un analisis de sensibilidad sobre un presupuesto nacional reducido a la mitad y sobre Z1 inaccesible durante las primeras 12 horas (`d_sensitivity_*.csv`)
 
-## Paradigm
+## Paradigma
 
-System Dynamics (aggregate stock-and-flow of resources, unmet need, and
-backlog per zone) combined with a scheduled decision/control layer
-(the allocation policy is re-evaluated every 6-hour block). This is
-explicitly **not** an agent-based model (no individual decision-maker is the
-object of study) and **not** a discrete-event simulation (no discrete-entity
-queueing discipline). See the paradigm-justification markdown cell in the
-notebook for the full argument.
+Dinamica de Sistemas (stock-and-flow agregado de recursos, necesidad
+insatisfecha y backlog por zona) combinada con una capa programada de
+decision/control (la politica de asignacion se reevalua cada bloque de 6
+horas). Esto explicitamente no es un modelo basado en agentes (ningun
+tomador de decisiones individual es el objeto de estudio) ni una simulacion
+de eventos discretos (no hay disciplina de colas de entidades discretas).
+Ver la celda markdown de justificacion del paradigma en el notebook para el
+argumento completo.
