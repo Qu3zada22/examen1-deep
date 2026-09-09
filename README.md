@@ -19,10 +19,11 @@ esa asignación contra cuatro métricas de política pública.
 │   └── Grupo7_Modelo.ipynb  EL entregable unico: todo el modelo vive aqui
 ├── docs/
 │   ├── Grupo7_PoliticaPublica.xlsx   archivo de datos del grupo (fuente de verdad)
-│   ├── S10_Examen_Practico.pdf       enunciado original del examen (PDF)
-│   ├── S10_Examen_Practico.md        transcripcion en markdown del enunciado
+│   ├── S10_Examen_Practico.md        transcripcion en markdown del enunciado del examen
 │   ├── reporte_estructura.md         esqueleto del reporte (espanol)
 │   ├── video_guion.md                guion del video (espanol)
+│   ├── g2_conversion_notes.md        notas de conversion de los archivos recibidos de Grupo 2 a CSV
+│   ├── g5_conversion_notes.md        notas de conversion del Excel recibido de Grupo 5 a CSV
 │   └── prompts_ia.md                 registro de prompts de IA generativa (espanol, fuente unica)
 ├── data/
 │   ├── raw/                  colocar aqui cualquier archivo Excel adicional o actualizado
@@ -69,17 +70,23 @@ como respaldo (`HARDCODED_*`), útiles solo si el archivo no está disponible,
 y `verificar_contra_excel()` compara lo parseado contra ellas para avisar si
 llegan a diferir.
 
-Los tres reportes de intercambio (de los Grupos 2, 3 y 5) todavía no
-existen, se producirán únicamente durante el intercambio presencial. Hasta
-entonces, la Sección 7 del notebook usa como respaldo un pequeño intercambio
-sintético de referencia para que el flujo "antes/después" (Pregunta 2) pueda
-ejecutarse desde ya.
+De los tres reportes de intercambio, **Grupo 2 y Grupo 5 ya llegaron y están
+convertidos** a `data/exchange/g2_hospital.csv` y
+`data/exchange/g5_personnel.csv` (ver `docs/g2_conversion_notes.md` y
+`docs/g5_conversion_notes.md` para el detalle completo de cada conversión,
+incluyendo los supuestos documentados). **Grupo 3 todavía no ha llegado**, se
+producirá en el intercambio presencial. Como `load_exchange_or_placeholder()`
+exige los tres archivos presentes para usar datos reales, la Sección 7 del
+notebook sigue usando el placeholder sintético completo hasta que también
+llegue `g3_supplies.csv`.
 
-### Cuando lleguen los datos del intercambio
+### Cuando llegue el dato de Grupo 3 (el que falta)
 
-1. Colocar los tres archivos CSV (siguiendo los esquemas de
-   `data/exchange/README.md`) en `data/exchange/`:
-   `g2_hospital.csv`, `g3_supplies.csv`, `g5_personnel.csv`.
+1. Colocar `g3_supplies.csv` (siguiendo el esquema de
+   `data/exchange/README.md`) en `data/exchange/`. Si Grupo 3 entrega un
+   formato más rico que ese esquema (como ocurrió con Grupo 2 y Grupo 5),
+   documentar la conversión en `docs/g3_conversion_notes.md` siguiendo el
+   mismo patrón.
 2. `uv sync` (solo si cambiaron las dependencias).
 3. `uv run jupyter lab` y volver a ejecutar la celda de carga del
    intercambio del notebook (Sección 7): prefiere automáticamente los
