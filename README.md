@@ -23,6 +23,7 @@ esa asignación contra cuatro métricas de política pública.
 │   ├── reporte_estructura.md         esqueleto del reporte (espanol)
 │   ├── video_guion.md                guion del video (espanol)
 │   ├── g2_conversion_notes.md        notas de conversion de los archivos recibidos de Grupo 2 a CSV
+│   ├── g3_conversion_notes.md        notas de conversion del Excel recibido de Grupo 3 a CSV
 │   ├── g5_conversion_notes.md        notas de conversion del Excel recibido de Grupo 5 a CSV
 │   └── prompts_ia.md                 registro de prompts de IA generativa (espanol, fuente unica)
 ├── data/
@@ -70,30 +71,26 @@ como respaldo (`HARDCODED_*`), útiles solo si el archivo no está disponible,
 y `verificar_contra_excel()` compara lo parseado contra ellas para avisar si
 llegan a diferir.
 
-De los tres reportes de intercambio, **Grupo 2 y Grupo 5 ya llegaron y están
-convertidos** a `data/exchange/g2_hospital.csv` y
-`data/exchange/g5_personnel.csv` (ver `docs/g2_conversion_notes.md` y
-`docs/g5_conversion_notes.md` para el detalle completo de cada conversión,
-incluyendo los supuestos documentados). **Grupo 3 todavía no ha llegado**, se
-producirá en el intercambio presencial. Como `load_exchange_or_placeholder()`
-exige los tres archivos presentes para usar datos reales, la Sección 7 del
-notebook sigue usando el placeholder sintético completo hasta que también
-llegue `g3_supplies.csv`.
+**Los tres reportes de intercambio ya llegaron y están convertidos**:
+`data/exchange/g2_hospital.csv`, `data/exchange/g3_supplies.csv` y
+`data/exchange/g5_personnel.csv` (ver `docs/g2_conversion_notes.md`,
+`docs/g3_conversion_notes.md` y `docs/g5_conversion_notes.md` para el
+detalle completo de cada conversión, incluyendo los supuestos documentados).
+`load_exchange_or_placeholder()` ya detecta los tres archivos y usa los
+datos reales — el notebook fue reejecutado de punta a punta con ellos, sin
+errores, y ya no muestra el mensaje de placeholder sintético.
 
-### Cuando llegue el dato de Grupo 3 (el que falta)
+### Ya no falta ningún dato de intercambio
 
-1. Colocar `g3_supplies.csv` (siguiendo el esquema de
-   `data/exchange/README.md`) en `data/exchange/`. Si Grupo 3 entrega un
-   formato más rico que ese esquema (como ocurrió con Grupo 2 y Grupo 5),
-   documentar la conversión en `docs/g3_conversion_notes.md` siguiendo el
-   mismo patrón.
-2. `uv sync` (solo si cambiaron las dependencias).
-3. `uv run jupyter lab` y volver a ejecutar la celda de carga del
-   intercambio del notebook (Sección 7): prefiere automáticamente los
-   archivos reales sobre el placeholder sintético en cuanto están presentes.
-4. Volver a ejecutar las celdas de la Pregunta 2 (antes/después, Sección 7)
-   y de análisis de sensibilidad (Sección 8).
-5. Actualizar la Sección 4 ("Incorporación del intercambio presencial") de
+Los pasos que siguen ahora son de redacción, no de datos:
+
+1. Revisar/ajustar con criterio propio los factores de conversión
+   `# ASSUMPTION:` de `Exchange.need_adjustment` (Sección 4.3 del notebook)
+   ahora que los tres CSV son reales, no placeholders.
+2. Volver a leer las celdas de la Pregunta 2 (antes/después, Sección 7) y
+   de análisis de sensibilidad (Sección 8) con los números reales ya
+   recalculados, y escribir las respuestas `[PENDIENTE - equipo]`.
+3. Actualizar la Sección 4 ("Incorporación del intercambio presencial") de
    `docs/reporte_estructura.md` con los hallazgos reales de antes/después.
 
 ### Si en cambio llega un archivo Excel nuevo o actualizado
@@ -156,10 +153,8 @@ que no se confunda con el código ya funcional. Faltan, en este orden:
 2. Sección 2: descripción del modelo en formato ODD simplificado.
 3. Sección 5: respuesta a la Pregunta 1 (cuál métrica es la más difícil de
    cumplir y por qué).
-4. Sección 6: completar `intercambio_grupo2`, `intercambio_grupo3` e
-   `intercambio_grupo5` con lo recibido realmente en el intercambio
-   presencial, y reemplazar los CSV placeholder en `data/exchange/` por los
-   reales.
+4. ~~Sección 6: completar `intercambio_grupo2`, `intercambio_grupo3` e
+   `intercambio_grupo5`~~ — ya está hecho, los tres son reales.
 5. Sección 7: respuesta a la Pregunta 2 (qué decisión cambió más y su
    impacto cuantificado).
 6. Sección 8: lectura del análisis de sensibilidad (qué decisión cambiaría
